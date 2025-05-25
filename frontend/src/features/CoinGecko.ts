@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchAllCryptos } from '../api/binance';
+import { fetchAllCryptos } from '../api/gecko';
 import type { CoinGeckoMarketCoin } from '../types/CoinGecko';
 
 export const useFetchAllCryptos = () => 
@@ -7,3 +7,4 @@ export const useFetchAllCryptos = () =>
     queryKey: ['all-cryptos'],
     queryFn: () => fetchAllCryptos(),
   });
+

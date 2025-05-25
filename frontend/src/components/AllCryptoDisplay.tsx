@@ -1,45 +1,52 @@
-import React, {useEffect, } from 'react';
-import { useFetchAllCryptos } from '../features/useFetchAllCryptos';
-
+import React, { useEffect } from 'react';
+import { useFetchAllCryptos } from '../features/CoinGecko';
 
 const AllCryptoDisplay: React.FC = () => {
-
   const { data, error, isLoading } = useFetchAllCryptos();
 
-console.log("All Cryptos Data:", data);
-useEffect(() => {
-
- }
-, []);
+  useEffect(() => {}, []);
 
   return (
-
-<div className='bg-dark-gray '>
- 
- 
- 
-  {data?.map((crypto) => (
-
-    <div className='grid grid-cols-6  h-14 ' key={crypto.symbol}>
-      <div className='text-amber-50 max-w-12'>{crypto.symbol.toUpperCase()}
-        <span className='ml-2 text-twitter-blue-muted'>{crypto.name.slice(0,12)}</span>
+    <div className='pl-42 bg-dark-gray py-40'>
+      
+       
+      <div className='grid grid-cols-6 h-10 font-bold text-amber-50  '>
+        <div className='ml-4'>Symbol / Name</div>
+        <div>Price</div>
+        <div>24h Change</div>
+        <div>Volume</div>
+        <div>Market Cap</div>
+        <div>Actions</div>
       </div>
-     
-      <div className='text-amber-50'>${crypto.current_price.toFixed(2)}</div>
-      <div className='text-red-500'>{crypto.price_change_24h.toFixed(2)}</div>
-      <div>
-        {(crypto.total_volume / 1_000_000_000).toFixed(2)}B
-      </div>
-      <div>
-        {(crypto.market_cap / 1_000_0000_000).toFixed(2)}B
-      </div>
-      <div>
-        <button>x</button> /  <button>y</button>
-      </div>
-     
+      {/* Grid Rows */}
+      {data?.map((crypto) => (
+        <div className='grid grid-cols-6 h-14  min-w-200 w-300' key={crypto.symbol}>
+          <div className='text-amber-50 max-w-16 ml-4 '>
+            {crypto.symbol.toUpperCase()}
+            <span className='ml-2 text-twitter-blue-muted pr-4'>
+              {crypto.name.slice(0, 12)}
+            </span>
+          </div>
+          <div className='text-amber-50'>
+            ${crypto.current_price.toFixed(2)}
+          </div>
+          <div className='text-red-500'>
+            {crypto.price_change_percentage_24h.toFixed(2)}%
+          </div>
+          <div className='text-amber-50'>
+            {(crypto.total_volume / 1_000_000_000).toFixed(2)}B
+          </div>
+          <div className='text-amber-50'>
+            {(crypto.market_cap / 1_000_000_000).toFixed(2)}B
+          </div>
+          <div className='text-amber-50'>
+            <button>x</button> / <button>y</button>
+          </div>
+        </div>
+      ))}
+      
     </div>
-  ))}
-</div>
-)
-}
+  );
+};
+
 export default AllCryptoDisplay;

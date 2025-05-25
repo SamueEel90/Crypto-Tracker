@@ -1,9 +1,8 @@
 const Header: React.FC = () => {
   return (
-<div className="flex  p-4
-bg-twitter-blue text-white">
+<div className=" fixed top-0 w-full p-4  h-16 bg-dark-gray text-white">
     <ul className="flex space-x-4">
-      <li><a className="text-white text-2xl" href="/">SCrypto</a></li>
+      <li><a className="text-white text-2xl" href="/homePage">SCrypto</a></li>
       <li><a href="/homePage">Buy Crypto</a></li>
       <li><a href="/homePage">Markets</a></li>
       <li><a href="/homePage">Auto-Invest</a></li>

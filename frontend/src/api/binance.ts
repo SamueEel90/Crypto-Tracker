@@ -10,7 +10,3 @@ export const fetchTopPrices = async () => {
   return response.data;
 };
 
-export const fetchAllCryptos = async () => {
-  const response = await axios.get(`/api/binance/all-cryptos`);
-  return response.data;
-};
