@@ -1,62 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from '../components/Header';
-import { fetchPairData, fetchTopPrices } from '../api/binance';
 import TopCryptosDisplay from '../components/TopCryptosDisplay';
 
 const HomePage: React.FC = () => {
-  const [prices, setPrices] = useState<any[]>([]);
-  const [priceData, setPriceData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const pair = "BTCUSDT";
-
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const [pairInfo, topPrices] = await Promise.all([
-          fetchPairData(pair),
-          fetchTopPrices(),
-        ]);
-
-        setPriceData(pairInfo);
-        setPrices(topPrices);
-      } catch (error) {
-        console.error('Error loading crypto data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadData();
-  }, []);
-
   return (
-    <div>
+    <div className="bg-dark-gray h-screen">
       <Header />
-      <h1 className='text-8xl text-white'>Welcome to the</h1>
-      <h1 className='text-8xl font-semibold text-twitter-blue'>SCrypto Tracker</h1>
-      <p>This is a simple React application with routing.</p>
+      <div className="flex flex-row space-x-8">
+        <div>
+          <h1 className="text-8xl text-white">Welcome to the</h1>
+          <h1 className="text-8xl font-semibold text-twitter-blue">SCrypto</h1>
+           
+        {/* {if logged in, show this} */}        
+         
+         <form className="flex ml-4 mt-12">
+            <input
+              className="bg-dark-gray rounded-md  w-80 h-10 outline-1 outline-gray-600 placeholder-amber-50 pl-2"
+              type="text"
+              placeholder="Continue with your email"
+            />
+            <button
+              type="submit"
+              style={{ backgroundColor: 'rgba(29, 155, 209, 1)' }}
+              className="h-10 w-40 text-white font-bold  ml-4 rounded-md"
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
 
-      <h1 className="text-xl font-bold mb-2">Crypto Pair: {pair}</h1>
-      <p>Last Price: {priceData?.lastPrice}</p>
-      <p>Price Change: {priceData?.priceChange}</p>
-      <p>Price Change Percent: {priceData?.priceChangePercent}</p>
-      <p>High Price: {priceData?.highPrice}</p>
-      <p>Low Price: {priceData?.lowPrice}</p>
-      <p>Open Price: {priceData?.openPrice}</p>
+     
 
-      <div className="p-4">
-        <h1 className="text-2xl font-bold mb-4">Top Cryptos</h1>
-        {loading ? <p>Loading...</p> : (
-          <ul>
-            {prices.map((item) => (
-              <li key={item.symbol} className="mb-2">
-                <strong>{item.symbol}:</strong> ${item.lastPrice} ({item.priceChangePercent}%)
-              </li>
-            ))}
-          </ul>
-        )}
+        <div className="ml-auto pt-8 pr-40">
+          <TopCryptosDisplay />
+        </div>
       </div>
-      <TopCryptosDisplay />
     </div>
   );
 };

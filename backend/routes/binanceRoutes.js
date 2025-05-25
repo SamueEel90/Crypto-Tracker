@@ -7,7 +7,7 @@ router.get('/prices', async (req, res) => {
   try {
     const response = await axios.get('https://api.binance.com/api/v3/ticker/24hr');
     
-    const symbols = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT'];
+    const symbols = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'XRPUSDT', 'LTCUSDT','SOLUSDT', ];
     const filtered = response.data.filter(t => symbols.includes(t.symbol));
     res.json(filtered);
   } catch (error) {

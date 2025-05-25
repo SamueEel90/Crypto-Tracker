@@ -3,8 +3,7 @@
 @theme {
   --color-twitter-blue: rgba(24, 179, 234, 1);
   --color-twitter-blue-muted: rgba(24, 179, 234, 0.7);
+  --color-light-gray: rgba(45, 49, 59, 1);
+  --color-dark-gray:rgba(24, 26, 32, 1);
   --color-background: #F5F8FA;
-}
-* {
- background-color: rgb(36, 34, 34);
 }
