@@ -9,7 +9,7 @@ const TopCryptosDisplay: React.FC = () => {
   useEffect(() => {
   const interval = setInterval(() => {
     refetch();
-  }, 1000000000); // Adjust the interval as needed (e.g., 10000 for 10 seconds)
+  }, 1000000000); 
   return () => clearInterval(interval);
 }, []);
   return (
