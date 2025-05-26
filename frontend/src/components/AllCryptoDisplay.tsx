@@ -7,7 +7,7 @@ const AllCryptoDisplay: React.FC = () => {
   useEffect(() => {}, []);
 
   return (
-    <div className='pl-42 bg-dark-gray py-40'>
+    <div className='pl-42 bg-dark-gray py-10'>
       
        
       <div className='grid grid-cols-6 h-10 font-bold text-amber-50  '>

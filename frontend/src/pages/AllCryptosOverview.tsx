@@ -12,11 +12,19 @@ return (
 <Header />
 <div className=' bg-dark-gray min-h-screen w-full flex flex-col'>
 
-<h1 className='flex mt-20 text-6xl justify-center text-amber-50'>Markets Overview</h1>
-<div className='flex gap-6 justify-center'>
+<div className='flex p-4 items-center justify-between mx-50'>
+<h1 className='flex mt-20 text-2xl justify-center  text-amber-50'>Markets Overview</h1>
+<h1 className='flex mt-20 text-2xl justify-center  text-amber-50'>Trading Data</h1>
+
+</div>
+<div className='flex gap-6 justify-center mx-50'>
   <TopGainersDisplay />
-  <TopGainersDisplay />
-  <TopGainersDisplay />
+  
+</div>
+
+<div className=' outline-gray-700 outline-1 rounded-lg m-2 p-4 mx-50'>
+  <h2 className='text-3xl text-left text-amber-50 p-4'>Top Tokens by Market Capitalization</h2>
+  <p className='text-gray-500 p-4'>Get a comprehensive snapshot of all cryptocurrencies available on SCrypto. This page displays the latest prices, 24-hour trading volume, price changes, and market capitalizations for all cryptocurrencies on SCrypto. Users can quickly access key information about these digital assets and access the trade page from here.</p>
 </div>
 
 

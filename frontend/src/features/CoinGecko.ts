@@ -7,4 +7,10 @@ export const useFetchAllCryptos = () =>
     queryKey: ['all-cryptos'],
     queryFn: () => fetchAllCryptos(),
   });
+  export const useFetchTopGainers = () =>
+  useQuery<CoinGeckoMarketCoin[]>({
+    queryKey: ['top-gainers'],
+    queryFn: () => fetchAllCryptos(),
+    select: (data) => data.sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h).slice(0, 8),
+  });
 
