@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchAllCryptos, fetchTopGainers, fetchTopLosers, fetchTopVolume } from '../api/gecko';
+import { fetchAllCryptos, fetchTopGainers, fetchTopLosers, fetchTopVolume, fetchTopMarketCapChange } from '../api/gecko';
 import type { CoinGeckoMarketCoin } from '../types/CoinGecko';
 
 export const useFetchAllCryptos = () => 
@@ -26,4 +26,9 @@ export const useFetchAllCryptos = () =>
       queryFn: () => fetchTopVolume(),
   });
 
+  export const useFetchTopMarketCapChange = () =>
+  useQuery<CoinGeckoMarketCoin[]>({
+    queryKey: ['top-market-cap-change'],
+    queryFn: () => fetchTopMarketCapChange(),
+  });
   

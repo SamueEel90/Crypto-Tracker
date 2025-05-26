@@ -1,10 +1,10 @@
 
 
-import { useFetchTopLosers } from "../features/CoinGecko";
+import { useFetchTopMarketCapChange } from "../features/CoinGecko";
 import { useEffect } from "react";
 
 const HotCoinsDisplay = () => {
-  const { refetch, data } = useFetchTopLosers();
+  const { refetch, data } = useFetchTopMarketCapChange();
 
   // useEffect( () =>{
   //   const interval = setInterval(()=> {

@@ -16,3 +16,8 @@ export const fetchTopVolume = async () => {
   const response = await axios.get(`/api/gecko/top-volume`);
   return response.data;
 }
+export const fetchTopMarketCapChange = async () => {
+  const response = await axios.get('/api/gecko/top-market-cap-change');
+  return response.data;
+
+}
