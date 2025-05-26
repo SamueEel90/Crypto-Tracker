@@ -4,6 +4,10 @@ import AllCryptoDisplay from '../components/AllCryptoDisplay';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import TopGainersDisplay from '../components/TopGainersDisplay';
+import TopLosersDisplay from '../components/TopLosersDisplay';
+import TopVolumeDisplay from '../components/TopVolumeDisplay';
+import HomePage from './HomePage';
+import HotCoinsDisplay from '../components/HotCoinsDisplay';
 
 const AllCryptosOverview: React.FC = () => {
 
@@ -18,8 +22,10 @@ return (
 
 </div>
 <div className='flex gap-6 justify-center mx-50'>
+  <HotCoinsDisplay />
   <TopGainersDisplay />
-  
+  <TopLosersDisplay />
+  <TopVolumeDisplay />
 </div>
 
 <div className=' outline-gray-700 outline-1 rounded-lg m-2 p-4 mx-50'>

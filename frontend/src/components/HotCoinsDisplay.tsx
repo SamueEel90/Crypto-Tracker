@@ -1,10 +1,10 @@
 
 
-import { useFetchTopGainers } from "../features/CoinGecko";
+import { useFetchTopLosers } from "../features/CoinGecko";
 import { useEffect } from "react";
 
-const TopGainersDisplay = () => {
-  const { refetch, data } = useFetchTopGainers();
+const HotCoinsDisplay = () => {
+  const { refetch, data } = useFetchTopLosers();
 
   // useEffect( () =>{
   //   const interval = setInterval(()=> {
@@ -18,7 +18,7 @@ const TopGainersDisplay = () => {
     <div className="mt-10 mb-10 min-w-[250px] w-[400px]">
       <div className="border-1 border-gray-600 rounded-xl p-4 bg-dark-gray">
         <div className="grid grid-cols-2 border-b-1 border-gray-600 pb-2">
-          <p className="text-amber-50 ">Top Gainers</p>
+          <p className="text-amber-50 ">Hot Coins</p>
           <span className="text-right text-amber-50  cursor-pointer hover:underline">More &rarr;</span>
         </div>
         <div className="grid grid-cols-3 gap-2 mt-2">
@@ -32,7 +32,7 @@ const TopGainersDisplay = () => {
               />
               <div className="text-amber-50">{crypto.symbol.toUpperCase()}</div></div>
               <div className="text-amber-50">${crypto.current_price}</div>
-              <div className="text-green-500">{crypto.price_change_percentage_24h}%</div>
+              <div className="text-red-500">{crypto.price_change_percentage_24h}%</div>
             </div>
           ))}
         </div>
@@ -41,4 +41,4 @@ const TopGainersDisplay = () => {
   );
 };
 
-export default TopGainersDisplay;
+export default HotCoinsDisplay;

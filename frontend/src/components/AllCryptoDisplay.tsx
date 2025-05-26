@@ -20,9 +20,9 @@ const AllCryptoDisplay: React.FC = () => {
       </div>
       {/* Grid Rows */}
       {data?.map((crypto) => (
-        <div className='grid grid-cols-6 h-14  min-w-200 w-300' key={crypto.symbol}>
+        <div className='grid grid-cols-6 h-14  min-w-200 w-300' key={crypto.id}>
           <div className='text-amber-50 max-w-16 ml-4 '>
-            {crypto.symbol.toUpperCase()}
+            <strong>{crypto.symbol.toUpperCase()}</strong>
             <span className='ml-2 text-twitter-blue-muted pr-4'>
               {crypto.name.slice(0, 12)}
             </span>
