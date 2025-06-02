@@ -7,3 +7,4 @@ export const useBinanceTicker24h = () =>
     queryKey: ['binance'],
     queryFn: () => fetchTopPrices(),
   });
+

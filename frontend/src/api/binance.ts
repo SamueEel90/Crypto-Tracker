@@ -10,3 +10,11 @@ export const fetchTopPrices = async () => {
   return response.data;
 };
 
+export const setWalletKeys = async (apiKey: string, secretKey: string) => {
+  const response = await axios.post(`/api/binance/wallet`, {
+    apiKey,
+    secretKey,
+  });
+  return response.data;
+} 
+

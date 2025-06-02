@@ -30,7 +30,7 @@ const RegisterForm: React.FC = () => {
     },
     onSuccess: () => {
       alert("Registration successful");
-      navigate("/");
+      navigate("/homePage");
     },
     onError: (error: any) => {
       alert(error?.response?.data?.message || error.message || "Something went wrong");

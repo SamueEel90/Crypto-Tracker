@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useFetchAllCryptos } from '../features/CoinGecko';
-
+import clsx from 'clsx';
 const AllCryptoDisplay: React.FC = () => {
   const { data, error, isLoading } = useFetchAllCryptos();
 
@@ -22,7 +22,7 @@ const AllCryptoDisplay: React.FC = () => {
       {data?.map((crypto) => (
         <div className='grid grid-cols-6 h-14  min-w-200 w-300' key={crypto.id}>
           <div className='text-amber-50 max-w-16 ml-4 '>
-            <strong>{crypto.symbol.toUpperCase()}</strong>
+            <strong></strong>{crypto.symbol.toUpperCase()}
             <span className='ml-2 text-twitter-blue-muted pr-4'>
               {crypto.name.slice(0, 12)}
             </span>
@@ -30,7 +30,11 @@ const AllCryptoDisplay: React.FC = () => {
           <div className='text-amber-50'>
             ${crypto.current_price.toFixed(2)}
           </div>
-          <div className='text-red-500'>
+          <div className={clsx({
+            'text-green-500': crypto.price_change_percentage_24h > 0,
+            'text-red-500' : crypto.price_change_percentage_24h <= 0
+          })
+          }>
             {crypto.price_change_percentage_24h.toFixed(2)}%
           </div>
           <div className='text-amber-50'>

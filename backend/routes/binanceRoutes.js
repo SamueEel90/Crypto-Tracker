@@ -1,19 +1,10 @@
 import express from 'express';
-import { get24hTicker } from '../config/binanceClient.js';
-import axios from 'axios';
+import { getPrices, setWalletData } from '../controllers/binanceController.js';
+
 const router = express.Router();
 
-router.get('/prices', async (req, res) => {
-  try {
-    const response = await axios.get('https://api.binance.com/api/v3/ticker/24hr');
-    
-    const symbols = ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'XRPUSDT', 'LTCUSDT','SOLUSDT', ];
-    const filtered = response.data.filter(t => symbols.includes(t.symbol));
-    res.json(filtered);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+router.get('/prices', getPrices);
 
+router.post('/walletData', setWalletData);
 
 export default router;

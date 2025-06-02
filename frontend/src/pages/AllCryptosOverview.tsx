@@ -18,7 +18,7 @@ return (
 
 <div className='flex p-4 items-center justify-between mx-50'>
 <h1 className='flex mt-20 text-2xl justify-center  text-amber-50'>Markets Overview</h1>
-<h1 className='flex mt-20 text-2xl justify-center  text-amber-50'>Trading Data</h1>
+
 
 </div>
 <div className='flex gap-6 justify-center mx-50'>

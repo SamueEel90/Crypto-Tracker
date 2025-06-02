@@ -1,5 +1,6 @@
 
 
+import clsx from "clsx";
 import { useFetchTopGainers } from "../features/CoinGecko";
 import { useEffect } from "react";
 
@@ -32,7 +33,10 @@ const TopGainersDisplay = () => {
               />
               <div className="text-amber-50">{crypto.symbol.toUpperCase()}</div></div>
               <div className="text-amber-50">${crypto.current_price}</div>
-              <div className="text-green-500">{crypto.price_change_percentage_24h}%</div>
+              <div className={clsx({
+                'text-green-500': crypto.price_change_percentage_24h >= 0,
+                'text-red-500': crypto.price_change_percentage_24h < 0
+              })}>{crypto.price_change_percentage_24h}%</div>
             </div>
           ))}
         </div>

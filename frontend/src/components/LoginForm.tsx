@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuthorization } from '../context/AuthorizationContext';
+
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
@@ -9,15 +11,16 @@ const LoginForm: React.FC = () => {
     usernameOrEmail: "",
     password: "",
   });
-
+const { isAuthenticated, user, login } = useAuthorization();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+
   const mutation = useMutation({
     mutationFn: async () => {
       const res = await axios.post("/api/auth/login", {
-        email: formData.usernameOrEmail,
+        username: formData.usernameOrEmail,
         password: formData.password,
       });
       return res.data;
@@ -25,6 +28,10 @@ const LoginForm: React.FC = () => {
     onSuccess: () => {
       alert("Login successful");
      navigate("/homePage");
+     login({
+        username: formData.usernameOrEmail, 
+        email: formData.usernameOrEmail, 
+      });
     },
     onError: (error: any) => {
       alert(error?.response?.data?.message || error.message || "Login failed");
@@ -92,16 +99,16 @@ const LoginForm: React.FC = () => {
 
         <p className="text-center text-amber-50 mt-3">or</p>
 
-        <button
-          type="button"
-          className="w-full text-white font-semibold py-2 px-4 mt-4 rounded-md outline-gray-600 outline-1"
-        >
-          Continue with Google
-        </button>
+    
 
         <p className="text-twitter-blue pt-20 text-center rounded-md cursor-pointer">
           Create a SCrypto Account
         </p>
+      {isAuthenticated && user ? (
+        <p className="text-green-500 text-center mt-4">{user.username} is logged in</p>
+      ) : (
+        <p className="text-red-500 text-center mt-4">Not logged in</p>
+      )}
       </form>
     </div>
   );

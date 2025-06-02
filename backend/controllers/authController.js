@@ -8,15 +8,16 @@ export const register = async (req, res) => {
 
     const user = await User.create({username, email, password }); 
     res.status(201).json(user);
-  } catch (err) {
-    res.status(500).json({ message: 'Server error' });
-  }
+  }catch (err) {
+  console.error(err);
+  res.status(500).json({ message: err.message || 'Server error' });
+}
 };
 
 export const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ username });
     if (!user || user.password !== password) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
