@@ -42,13 +42,29 @@ const WalletBalance: React.FC = () => {
     fetchOverview();
   }, [user?.username]);
 
-  if (loading) return <p>Loading wallet overview...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) {
+  return (
+    <div className="flex flex-col mt-8 bg-light-gray rounded-lg w-full lg:w-[30rem] max-h-[30rem] overflow-y-auto px-4 py-2 space-y-2">
+      <div className="h-6 bg-gray-700 rounded w-1/2 animate-pulse mb-4" />
+      {[...Array(3)].map((_, i) => (
+        <div key={i} className="h-16 bg-gray-700 rounded animate-pulse mb-2" />
+      ))}
+    </div>
+  );
+}
+ if (error) {
+  return (
+    <div className="flex flex-col mt-8 bg-red-100 border border-red-400 text-red-800 rounded-lg w-full lg:w-[30rem] px-4 py-3">
+      <strong className="font-bold">Error:</strong>
+      <span className="block sm:inline mt-1">{error}</span>
+    </div>
+  );
+}
 
   return (
-    <div className="p-4 bg-gray-900 text-white rounded-md max-w-md mx-auto">
-      <h2 className="text-xl font-semibold mb-4">Wallet Overview (USDC)</h2>
-      <p className="text-lg mb-4">
+    <div className="flex flex-col mt-8 bg-light-gray rounded-lg w-full lg:w-[30rem] max-h-[30rem]  overflow-y-auto px-4 py-2 space-y-2">
+      <h2 className="text-xl text-amber-50 font-semibold mb-4">Wallet Overview (USDC)</h2>
+      <p className="text-lg mb-4 text-twitter-blue font">
         Total Value: <strong>{data?.totalValueUSDC.toFixed(2)} USDC</strong>
       </p>
       {data?.balances.length === 0 ? (
@@ -58,8 +74,8 @@ const WalletBalance: React.FC = () => {
           {data?.balances.map((item) => (
             <li key={item.asset} className="mb-2 border-b border-gray-700 pb-2">
               <div className="flex justify-between">
-                <span>{item.asset}</span>
-                <span>{item.valueUSDC.toFixed(2)} USDC</span>
+                <span className=' text-amber-50 font'>{item.asset}</span>
+                <span className=' text-amber-50'>{item.valueUSDC.toFixed(2)} USDC</span>
               </div>
               <div className="text-sm text-gray-400">
                 Free: {item.free} | Locked: {item.locked} | Price: {item.priceUSDC.toFixed(4)} USDC

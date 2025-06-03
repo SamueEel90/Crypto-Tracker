@@ -1,9 +1,8 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAuthorization } from '../context/AuthorizationContext';
-
+import { useAuthorization } from "../context/AuthorizationContext";
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
@@ -11,11 +10,11 @@ const LoginForm: React.FC = () => {
     usernameOrEmail: "",
     password: "",
   });
-const { isAuthenticated, user, login } = useAuthorization();
+  const { login } = useAuthorization();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
-
 
   const mutation = useMutation({
     mutationFn: async () => {
@@ -27,10 +26,10 @@ const { isAuthenticated, user, login } = useAuthorization();
     },
     onSuccess: () => {
       alert("Login successful");
-     navigate("/homePage");
-     login({
-        username: formData.usernameOrEmail, 
-        email: formData.usernameOrEmail, 
+      navigate("/");
+      login({
+        username: formData.usernameOrEmail,
+        email: formData.usernameOrEmail,
       });
     },
     onError: (error: any) => {
@@ -44,10 +43,10 @@ const { isAuthenticated, user, login } = useAuthorization();
   };
 
   return (
-    <div className="pt-50 flex flex-col items-center justify-center">
+    <div className="flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-2xl shadow-md w-110 h-150 outline-1 outline-gray-600 outline-offset-2"
+        className="bg-dark-gray p-6 rounded-2xl shadow-md w-80 h-150 outline-1 outline-gray-600 outline-offset-2 md:w-100 md:h-160"
       >
         <h1 className="text-4xl mb-4 text-twitter-blue">SCrypto</h1>
         <h1 className="text-4xl font-semibold mb-4 mt-8 text-white">Log in</h1>
@@ -65,7 +64,7 @@ const { isAuthenticated, user, login } = useAuthorization();
             id="usernameOrEmail"
             value={formData.usernameOrEmail}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-600 rounded-md shadow-sm p-2 placeholder-gray-400"
+            className="mt-1 block w-full border text-twitter-blue border-gray-600 rounded-md shadow-sm p-2 placeholder-gray-400"
             required
           />
         </div>
@@ -83,7 +82,7 @@ const { isAuthenticated, user, login } = useAuthorization();
             id="password"
             value={formData.password}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-600 rounded-md shadow-sm p-2 placeholder-gray-400"
+            className="mt-1 block w-full border  text-twitter-blue border-gray-600 rounded-md shadow-sm p-2 placeholder-gray-400"
             required
           />
         </div>
@@ -97,18 +96,11 @@ const { isAuthenticated, user, login } = useAuthorization();
           {mutation.isPending ? "Logging in..." : "Login"}
         </button>
 
-        <p className="text-center text-amber-50 mt-3">or</p>
-
-    
-
-        <p className="text-twitter-blue pt-20 text-center rounded-md cursor-pointer">
+        <button className="text-twitter-blue pt-20 w-full rounded-md cursor-pointer"
+          onClick={() => navigate("/registerPage")}
+        >
           Create a SCrypto Account
-        </p>
-      {isAuthenticated && user ? (
-        <p className="text-green-500 text-center mt-4">{user.username} is logged in</p>
-      ) : (
-        <p className="text-red-500 text-center mt-4">Not logged in</p>
-      )}
+        </button>
       </form>
     </div>
   );

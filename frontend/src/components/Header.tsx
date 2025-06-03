@@ -1,6 +1,6 @@
 import profileIcon from '../assets/Profile.png';
 import searchIcon from '../assets/SearchIcon.png';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthorization } from '../context/AuthorizationContext';
 
 const Header: React.FC = () => {
@@ -8,45 +8,61 @@ const Header: React.FC = () => {
   const { isAuthenticated, user } = useAuthorization();
 
   return (
-    <div className="fixed top-0 w-full p-4 h-16 bg-dark-gray text-white">
-      <div className="flex justify-between">
-        <ul className="flex space-x-4 items-center">
+    <header className="fixed top-0 z-50 w-full px-4 py-2 bg-dark-gray text-white shadow-md">
+      <div className="flex flex-wrap justify-between items-center">
+        
+        <ul className="flex flex-wrap items-center space-x-4">
           <li>
-            <a className="text-twitter-blue text-3xl" href="/homePage">
+            <a className="text-twitter-blue text-2xl sm:text-3xl font-semibold" href="/">
               {isAuthenticated ? user?.username || 'SCrypto' : 'SCrypto'}
             </a>
           </li>
-          <li>
-            <a href="/homePage">Buy Crypto</a>
+          <li className="hidden sm:inline">
+            <a href="/" className="hover:text-twitter-blue">Buy Crypto</a>
           </li>
-          <li>
-            <a href="/homePage">Markets</a>
+          <li className="hidden sm:inline">
+            <a href="/" className="hover:text-twitter-blue">Markets</a>
           </li>
-          <li>
-            <a href="/homePage">Auto-Invest</a>
+          <li className="hidden sm:inline">
+            <a href="/" className="hover:text-twitter-blue">Auto-Invest</a>
           </li>
-          <li>
-            <a href="/homePage">Crypto Bots</a>
+          <li className="hidden sm:inline">
+            <a href="/" className="hover:text-twitter-blue">Crypto Bots</a>
           </li>
         </ul>
-        <ul className="flex space-x-6 items-center">
+
+        <ul className="flex items-center space-x-4 sm:space-x-6 mt-2 sm:mt-0">
+            <button
+              className="bg-twitter-blue w-20 h-6 rounded-2xl text-sm font-medium hover:brightness-110 transition"
+              onClick={() => navigate('/LoginPage')}
+            >
+              Login
+            </button>
+              <button
+              className="bg-twitter-blue w-20 h-6 rounded-2xl text-sm font-medium hover:brightness-110 transition"
+              onClick={() => navigate('/RegisterPage')}
+            >
+              Sign Up
+            </button>
           <li>
-            <img className="w-5 h-5" src={searchIcon} alt="Search" />
+            <img className="w-6 h-6 cursor-pointer" src={searchIcon} alt="Search" />
           </li>
           <li>
             <button
-              className="bg-twitter-blue w-24 h-8 rounded-2xl"
+              className="bg-twitter-blue w-24 h-8 rounded-2xl text-sm font-medium hover:brightness-110 transition"
               onClick={() => navigate('/YourWallet')}
             >
               Wallet
             </button>
           </li>
           <li>
-            <img className="w-8 h-8 mr-10" src={profileIcon} alt="Profile" />
+            <Link to="/profile">
+            <img className="w-8 h-8 rounded-full cursor-pointer" src={profileIcon} alt="Profile"/>
+            </Link>
           </li>
         </ul>
       </div>
-    </div>
+    </header>
   );
 };
 

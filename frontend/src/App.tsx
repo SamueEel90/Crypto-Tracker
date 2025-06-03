@@ -11,8 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/homePage" element={<HomePage />} />
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/loginPage" element={<LoginPage />} />
         <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="/CryptoOverview" element={<AllCryptosOverview />} />
         <Route path="/YourWallet" element={< WalletPage />}></Route>

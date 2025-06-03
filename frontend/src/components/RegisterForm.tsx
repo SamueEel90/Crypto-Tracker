@@ -30,7 +30,7 @@ const RegisterForm: React.FC = () => {
     },
     onSuccess: () => {
       alert("Registration successful");
-      navigate("/homePage");
+      navigate("/loginPage");
     },
     onError: (error: any) => {
       alert(error?.response?.data?.message || error.message || "Something went wrong");
@@ -43,10 +43,10 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <div className="pt-50 flex flex-col items-center justify-center">
+    <div className=" flex flex-col items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-2xl shadow-md w-110 h-180 outline-1 outline-gray-600 outline-offset-2"
+        className="bg-dark-gray p-6 rounded-2xl shadow-md w-80 h-150 outline-1 outline-gray-600 outline-offset-2 md:w-100 md:h-160"
       >
         <h1 className="text-4xl mb-4 text-twitter-blue">SCrypto</h1>
         <h1 className="text-4xl font-semibold mb-4 mt-8 text-white">Create Account</h1>
@@ -120,14 +120,7 @@ const RegisterForm: React.FC = () => {
           {mutation.isPending ? "Registering..." : "Register"}
         </button>
 
-        <p className="text-center text-amber-50 mt-3">or</p>
-
-        <button
-          type="button"
-          className="w-full text-white font-semibold py-2 px-4 mt-4 rounded-md outline-gray-600 outline-1"
-        >
-          Continue with Google
-        </button>
+      
       </form>
     </div>
   );

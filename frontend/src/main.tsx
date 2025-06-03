@@ -6,6 +6,7 @@ import App from './App.tsx'
 import { Provider } from 'react-redux'
 import { store } from './store.ts'
 import { AuthorizationProvider } from './context/AuthorizationContext.tsx'
+
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
    <Provider store={store}>
     <AuthorizationProvider>
     <App />
+    
     </AuthorizationProvider>
     </Provider>
     </QueryClientProvider>
