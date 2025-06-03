@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import TopCryptosDisplay from '../components/TopCryptosDisplay';
 import CryptoNews from '../components/CryptoNews';
 import  { useAuthorization } from '../context/AuthorizationContext';
+import WalletBalance from '../components/WalletBalance';
 const HomePage: React.FC = () => {
 const {isAuthenticated, user} = useAuthorization();
   return (
@@ -68,6 +69,7 @@ const {isAuthenticated, user} = useAuthorization();
         <div className="ml-auto pt-8 ">
           <TopCryptosDisplay />
           <CryptoNews />
+          <WalletBalance />
         </div>
       </div>
     </div>

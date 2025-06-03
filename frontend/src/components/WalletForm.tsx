@@ -1,29 +1,34 @@
 import React, { useState , useRef } from 'react';
 import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
-
+import { useAuthorization } from '../context/AuthorizationContext';
 
 const WalletForm: React.FC = () => {
-
+const { user } = useAuthorization();
 const apiKeyRef = useRef<HTMLInputElement>(null);
 const secretKeyRef = useRef<HTMLInputElement>(null);
 
 const mutation = useMutation({
   mutationFn: async () => {
     const res = await axios.post('api/binance/walletData', {
-      username: "Samuel",
+      username: user?.username,
       apiKey: apiKeyRef.current?.value,
       apiSecret: secretKeyRef.current?.value
 })
 
 return res.data 
 
-  }
+  },
+  onSuccess: () => {
+    if (apiKeyRef.current) 
+      apiKeyRef.current.value = '';
+    if (secretKeyRef.current) 
+      secretKeyRef.current.value = '';
+    },
+  
 });
 const handleSubmit = (e: React.FormEvent) => {
   e.preventDefault();
-  console.log("API Key:", apiKeyRef.current?.value);
-  console.log("Secret Key:", secretKeyRef.current?.value);
   mutation.mutate();
  
 }

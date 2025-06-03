@@ -17,7 +17,7 @@ interface AuthorizationContextType {
   logout: () => void;
 }
 
-const AuthorizationContext = createContext<AuthorizationContextType | undefined>(undefined);
+export const AuthorizationContext = createContext<AuthorizationContextType | undefined>(undefined);
 
 export const AuthorizationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const dispatch = useDispatch();
