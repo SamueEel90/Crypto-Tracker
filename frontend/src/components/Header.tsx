@@ -56,7 +56,7 @@ const Header: React.FC = () => {
             </button>
           </li>
           <li>
-            <Link to="/profile">
+            <Link to="/profilePage">
             <img className="w-8 h-8 rounded-full cursor-pointer" src={profileIcon} alt="Profile"/>
             </Link>
           </li>

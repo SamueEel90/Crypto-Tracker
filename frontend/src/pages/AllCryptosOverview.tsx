@@ -1,19 +1,19 @@
 import React, {} from 'react';
 
 import AllCryptoDisplay from '../components/AllCryptoDisplay';
-import Header from '../components/Header';
+
 import Footer from '../components/Footer';
 import TopGainersDisplay from '../components/TopGainersDisplay';
 import TopLosersDisplay from '../components/TopLosersDisplay';
 import TopVolumeDisplay from '../components/TopVolumeDisplay';
-import HomePage from './HomePage';
+
 import HotCoinsDisplay from '../components/HotCoinsDisplay';
 
 const AllCryptosOverview: React.FC = () => {
 
 return (
 <>
-<Header />
+
 <div className=' bg-dark-gray min-h-screen w-full flex flex-col'>
 
 <div className='flex p-4 items-center justify-between mx-50'>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+
 import TopCryptosDisplay from '../components/TopCryptosDisplay';
 import CryptoNews from '../components/CryptoNews';
 import { useAuthorization } from '../context/AuthorizationContext';
@@ -11,7 +11,7 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   return (
     <div className="bg-dark-gray min-h-screen">
-      <Header />
+ 
 
       <div className="flex flex-col lg:flex-row lg:space-x-8 px-6 sm:px-10 lg:px-20">
        
