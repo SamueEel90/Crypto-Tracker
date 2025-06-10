@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useFetchAllCryptos } from '../features/CoinGecko';
 import clsx from 'clsx';
 const AllCryptoDisplay: React.FC = () => {
-  const { data, error, isLoading } = useFetchAllCryptos();
+  const { data } = useFetchAllCryptos();
 
   useEffect(() => {}, []);
 

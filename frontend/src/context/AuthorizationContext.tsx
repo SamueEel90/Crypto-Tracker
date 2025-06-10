@@ -7,7 +7,7 @@ import type { RootState } from "../store";
 interface AuthorizationContextType {
   isAuthenticated: boolean;
   token: string | null;
-  user: { username: string } | null;
+  user: { username: string, } | null;
   login: (token: string, user: { username: string }) => void;
   logout: () => void;
 }
@@ -18,7 +18,7 @@ export const AuthorizationContext = createContext<AuthorizationContextType | und
 export const AuthorizationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const dispatch = useDispatch();
   const { isAuthenticated, token, user } = useSelector((state: RootState) => state.authorization);
-
+ 
     
   useEffect(() => {
     const savedToken = localStorage.getItem("token");

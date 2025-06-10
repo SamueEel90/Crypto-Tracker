@@ -45,5 +45,18 @@ export const getProfilePicture = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 }
-
+export const getUserEmail = async (req, res) => {
+   const { username } = req.params;
+   try {
+     const user = await User.findOne({ username });
+     if (user) {
+       res.json({ email: user.email });
+     } else {
+       res.status(404).json({ message: 'User not found' });
+     }
+   } catch (error) {
+     console.error('Error fetching user email:', error);
+     res.status(500).json({ message: 'Server error' });
+   }
+}
 export default router;
