@@ -36,7 +36,7 @@ const TopGainersDisplay = () => {
               <div className={clsx({
                 'text-green-500': crypto.price_change_percentage_24h >= 0,
                 'text-red-500': crypto.price_change_percentage_24h < 0
-              })}>{crypto.price_change_percentage_24h}%</div>
+              })}>{crypto.price_change_percentage_24h.toFixed(2)}%</div>
             </div>
           ))}
         </div>
