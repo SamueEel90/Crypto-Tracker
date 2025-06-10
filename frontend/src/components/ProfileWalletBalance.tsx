@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuthorization } from '../context/AuthorizationContext';
-import ProfilePicture from './ProfilePicture';
 
 interface BalanceItem {
   asset: string;
@@ -21,29 +20,9 @@ const ProfileWalletBalance: React.FC = () => {
   const [data, setData] = useState<WalletOverviewResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [file, setFile] = useState<File | null>(null);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) setFile(e.target.files[0]);
-  };
-
  
-const handleUpload = async () => {
-  if (!file || !user?.username) return;
 
-  const formData = new FormData();
-  formData.append('profilePicture', file);
-  formData.append('username', user.username); 
 
-  try {
-    const response = await axios.post('/api/auth/upload-profile-picture', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-    console.log('Uploaded:', response.data.profilePicture); 
-  } catch (error) {
-    console.error('Upload failed:', error);
-  }
-};
   useEffect(() => {
     if (!user?.username) {
       setError('User not logged in');
@@ -67,7 +46,6 @@ const handleUpload = async () => {
     fetchOverview();
   }, [user?.username]);
 
-  
   if (loading) {
     return (
       <div className="flex flex-col mt-8 bg-light-gray rounded-lg w-full lg:w-[30rem] max-h-[30rem] overflow-y-auto px-4 py-2 space-y-2">
@@ -79,7 +57,6 @@ const handleUpload = async () => {
     );
   }
 
- 
   if (error) {
     return (
       <div className="flex flex-col mt-8 bg-red-100 border border-red-400 text-red-800 rounded-lg w-full lg:w-[30rem] px-4 py-3">
@@ -89,21 +66,18 @@ const handleUpload = async () => {
     );
   }
 
-
   return (
     <div className="flex flex-col mt-8 bg-light-gray rounded-lg mx-7 max-h-[30rem] overflow-y-auto px-4 py-2 space-y-2">
       <div className="flex flex-col mb-4">
-        <ProfilePicture />
-        <div>
-          <input type="file" accept="image/*" onChange={handleFileChange} />
-          <button onClick={handleUpload}>Upload</button>
-        </div>
+       
+      
         <p className="text-amber-50">{user?.username}</p>
       </div>
       <h2 className="text-xl text-amber-50 font-semibold mb-4">
         Estimated Wallet Balance
         <strong>{' '}{data?.totalValueUSDC.toFixed(2)} USDC</strong>
       </h2>
+      
       <h3 className="text-lg text-amber-50 font-semibold mb-2">
         €{data ? (data.totalValueUSDC * 0.92).toFixed(2) : '0.00'}
       </h3>

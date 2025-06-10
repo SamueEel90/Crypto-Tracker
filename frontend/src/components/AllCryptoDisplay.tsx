@@ -18,7 +18,6 @@ const AllCryptoDisplay: React.FC = () => {
         <div>Market Cap</div>
         <div>Actions</div>
       </div>
-      {/* Grid Rows */}
       {data?.map((crypto) => (
         <div className='grid grid-cols-6 h-14  min-w-200 w-300' key={crypto.id}>
           <div className='text-amber-50 max-w-16 ml-4 '>
