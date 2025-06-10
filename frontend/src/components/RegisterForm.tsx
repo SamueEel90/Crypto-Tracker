@@ -21,11 +21,15 @@ const RegisterForm: React.FC = () => {
       if (formData.password !== formData.confirmPassword) {
         throw new Error("Passwords do not match");
       }
+
       const res = await axios.post("/api/auth/register", {
         username: formData.username,
         email: formData.email,
         password: formData.password,
       });
+
+    
+      localStorage.setItem("token", res.data.token);
       return res.data;
     },
     onSuccess: () => {
@@ -41,6 +45,7 @@ const RegisterForm: React.FC = () => {
     e.preventDefault();
     mutation.mutate();
   };
+
 
   return (
     <div className=" flex flex-col items-center justify-center">

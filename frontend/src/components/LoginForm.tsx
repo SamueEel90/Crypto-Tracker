@@ -7,7 +7,7 @@ import { useAuthorization } from "../context/AuthorizationContext";
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    usernameOrEmail: "",
+    username: "",
     password: "",
   });
   const { login } = useAuthorization();
@@ -18,20 +18,27 @@ const LoginForm: React.FC = () => {
 
   const mutation = useMutation({
     mutationFn: async () => {
-      const res = await axios.post("/api/auth/login", {
-        username: formData.usernameOrEmail,
+      console.log("Logging in with:", {
+        username: formData.username,
         password: formData.password,
       });
+      const res = await axios.post("/api/auth/login", {
+        username: formData.username,
+        password: formData.password,
+      });
+
+    
+      localStorage.setItem("token", res.data.token);
+
       return res.data;
     },
-    onSuccess: () => {
-      alert("Login successful");
-      navigate("/");
-      login({
-        username: formData.usernameOrEmail,
-        email: formData.usernameOrEmail,
-      });
-    },
+
+
+onSuccess: (data) => {
+  alert("Login successful");
+  login(data.token, data.user); 
+  navigate("/");
+},
     onError: (error: any) => {
       alert(error?.response?.data?.message || error.message || "Login failed");
     },
@@ -53,7 +60,7 @@ const LoginForm: React.FC = () => {
 
         <div className="mb-4">
           <label
-            htmlFor="usernameOrEmail"
+            htmlFor="username"
             className="block text-sm font-medium text-twitter-blue pt-10"
           >
             Email/Username
@@ -61,8 +68,8 @@ const LoginForm: React.FC = () => {
           <input
             type="text"
             placeholder="Enter email or username"
-            id="usernameOrEmail"
-            value={formData.usernameOrEmail}
+            id="username"
+            value={formData.username}
             onChange={handleChange}
             className="mt-1 block w-full border text-twitter-blue border-gray-600 rounded-md shadow-sm p-2 placeholder-gray-400"
             required
@@ -82,7 +89,7 @@ const LoginForm: React.FC = () => {
             id="password"
             value={formData.password}
             onChange={handleChange}
-            className="mt-1 block w-full border  text-twitter-blue border-gray-600 rounded-md shadow-sm p-2 placeholder-gray-400"
+            className="mt-1 block w-full border text-twitter-blue border-gray-600 rounded-md shadow-sm p-2 placeholder-gray-400"
             required
           />
         </div>
@@ -96,7 +103,9 @@ const LoginForm: React.FC = () => {
           {mutation.isPending ? "Logging in..." : "Login"}
         </button>
 
-        <button className="text-twitter-blue pt-20 w-full rounded-md cursor-pointer"
+        <button
+          type="button"
+          className="text-twitter-blue pt-20 w-full rounded-md cursor-pointer"
           onClick={() => navigate("/registerPage")}
         >
           Create a SCrypto Account
