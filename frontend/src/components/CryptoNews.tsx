@@ -8,7 +8,7 @@ const CryptoNews: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col bg-light-gray rounded-lg w-full lg:w-[30rem] mt-6 max-h-[20rem] overflow-y-auto px-4 py-4 space-y-4">
+    <div className="flex flex-col bg-gray-800 rounded-lg w-full lg:w-[30rem] mt-6 max-h-[20rem] overflow-y-auto px-4 py-4 space-y-4">
       <p className="text-xl font-bold text-amber-50 border-b border-gray-700 pb-2">News</p>
       {newsItems.map((news, index) => (
         <p key={index} className="text-amber-50 text-sm sm:text-base border-b border-gray-600 pb-2">

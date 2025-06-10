@@ -22,11 +22,8 @@ const WalletBalance: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!user?.username) {
-      setError('User not logged in');
-      setLoading(false);
-      return;
-    }
+    if (!user?.username) return;
+
 
     const fetchOverview = async () => {
       try {
@@ -44,7 +41,7 @@ const WalletBalance: React.FC = () => {
 
   if (loading) {
   return (
-    <div className="flex flex-col mt-8 bg-light-gray rounded-lg w-full lg:w-[30rem] max-h-[30rem] overflow-y-auto px-4 py-2 space-y-2">
+    <div className="flex flex-col mt-8 bg-gray-800 rounded-lg w-full lg:w-[30rem] max-h-[30rem] overflow-y-auto px-4 py-2 space-y-2">
       <div className="h-6 bg-gray-700 rounded w-1/2 animate-pulse mb-4" />
       {[...Array(3)].map((_, i) => (
         <div key={i} className="h-16 bg-gray-700 rounded animate-pulse mb-2" />
@@ -62,7 +59,7 @@ const WalletBalance: React.FC = () => {
 }
 
   return (
-    <div className="flex flex-col mt-8 bg-light-gray rounded-lg w-full lg:w-[30rem] max-h-[30rem]  overflow-y-auto px-4 py-2 space-y-2">
+    <div className="flex flex-col mt-8 bg-gray-800 rounded-lg w-full lg:w-[30rem] max-h-[30rem]  overflow-y-auto px-4 py-2 space-y-2">
       <h2 className="text-xl text-amber-50 font-semibold mb-4">Wallet Overview (USDC)</h2>
       <p className="text-lg mb-4 text-twitter-blue font">
         Total Value: <strong>{data?.totalValueUSDC.toFixed(2)} USDC</strong>

@@ -22,7 +22,7 @@ const Header: React.FC = () => {
             <a href="/" className="hover:text-twitter-blue">Buy Crypto</a>
           </li>
           <li className="hidden sm:inline">
-            <a href="/" className="hover:text-twitter-blue">Markets</a>
+            <a href="/CryptoOverview" className="hover:text-twitter-blue">Markets</a>
           </li>
           <li className="hidden sm:inline">
             <a href="/" className="hover:text-twitter-blue">Auto-Invest</a>

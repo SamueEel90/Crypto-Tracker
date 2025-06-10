@@ -56,15 +56,15 @@ const ProfilePicture: React.FC = () => {
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+ 
 
   return (
-    <div className="flex flex-col items-center space-y-4">
+    <div className="flex ml-8 justify-center sm:justify-start">
       {profilePicture ? (
         <img
           src={`${baseURL}${profilePicture}`}
           alt={`${user?.username} profile`}
-          className="w-24 h-24 rounded-full object-cover"
+          className="flex w-30 h-30 rounded-full object-cover"
         />
       ) : (
         <div className="flex flex-col items-center space-y-2">

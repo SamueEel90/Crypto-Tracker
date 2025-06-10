@@ -48,7 +48,7 @@ const ProfileWalletBalance: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col mt-8 bg-light-gray rounded-lg w-full lg:w-[30rem] max-h-[30rem] overflow-y-auto px-4 py-2 space-y-2">
+      <div className="flex flex-col mt-8 bg-gray-800 rounded-lg w-full  max-h-[30rem] overflow-y-auto px-4 py-2 space-y-2">
         <div className="h-6 bg-gray-700 rounded w-1/2 animate-pulse mb-4" />
         {[...Array(3)].map((_, i) => (
           <div key={i} className="h-16 bg-gray-700 rounded animate-pulse mb-2" />
@@ -57,17 +57,10 @@ const ProfileWalletBalance: React.FC = () => {
     );
   }
 
-  if (error) {
-    return (
-      <div className="flex flex-col mt-8 bg-red-100 border border-red-400 text-red-800 rounded-lg w-full lg:w-[30rem] px-4 py-3">
-        <strong className="font-bold">Error:</strong>
-        <span className="block sm:inline mt-1">{error}</span>
-      </div>
-    );
-  }
+
 
   return (
-    <div className="flex flex-col mt-8 bg-light-gray rounded-lg mx-7 max-h-[30rem] overflow-y-auto px-4 py-2 space-y-2">
+    <div className="flex flex-col mt-8 bg-gray-800 rounded-lg mx-7 max-h-[30rem] overflow-y-auto px-4 py-2 space-y-2">
       <div className="flex flex-col mb-4">
        
       

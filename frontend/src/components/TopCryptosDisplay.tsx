@@ -20,7 +20,7 @@ const TopCryptosDisplay: React.FC = () => {
       ) : error ? (
         <div className="text-red-500 mt-10">Error: {error.message}</div>
       ) : (
-        <div className="flex flex-col mt-20 bg-light-gray rounded-lg w-full lg:w-[30rem] max-h-[30rem]  overflow-y-auto px-4 py-2 space-y-2">
+        <div className="flex flex-col mt-20 bg-gray-800 rounded-lg w-full lg:w-[30rem] max-h-[30rem]  overflow-y-auto px-4 py-2 space-y-2">
           <div className="flex justify-between mb-4 border-b border-gray-700 pb-2">
             <button className="text-amber-50 text-sm sm:text-base">Popular</button>
             <button className="text-amber-50 text-sm sm:text-base">New Listing</button>
