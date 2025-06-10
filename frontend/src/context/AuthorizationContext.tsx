@@ -1,7 +1,8 @@
-import React, { createContext, useContext } from "react";
+import React, { useEffect, createContext, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login as loginAction, logout as logoutAction } from "../AuthorizationSlice";
 import type { RootState } from "../store";
+
 
 interface AuthorizationContextType {
   isAuthenticated: boolean;
@@ -18,14 +19,29 @@ export const AuthorizationProvider: React.FC<{ children: React.ReactNode }> = ({
   const dispatch = useDispatch();
   const { isAuthenticated, token, user } = useSelector((state: RootState) => state.authorization);
 
+    
+  useEffect(() => {
+    const savedToken = localStorage.getItem("token");
+    const savedUser = localStorage.getItem("user");
+
+    if (savedToken && savedUser) {
+      dispatch(loginAction({ token: savedToken, user: JSON.parse(savedUser) }));
+    }
+  }, []);
+  
+  
+
   const login = (token: string, user: { username: string }) => {
     localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
     dispatch(loginAction({ token, user }));
   };
 
   const logout = () => {
     localStorage.removeItem("token");
+    
     dispatch(logoutAction());
+   
   };
 
   const value: AuthorizationContextType = {

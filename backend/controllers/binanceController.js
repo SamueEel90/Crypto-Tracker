@@ -84,7 +84,7 @@ for (const asset of Object.keys(balance.total)) {
     priceUSDC = 0;
   }
 
-  // Ak cena nie je dostupná, preskoč token
+
   if (!priceUSDC || priceUSDC === 0) continue;
 
   const valueUSDC = (free + locked) * priceUSDC;

@@ -5,13 +5,12 @@ import { useEffect } from "react";
 const HotCoinsDisplay = () => {
   const { refetch, data } = useFetchTopMarketCapChange();
 
-  // Uncomment to enable auto-refresh
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     refetch();
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 100);
+    return () => clearInterval(interval);
+  }, [refetch]);
 
   return (
     <div className="mt-10 mb-10 min-w-[250px] w-[400px]">

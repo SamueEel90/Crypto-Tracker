@@ -1,7 +1,8 @@
-import profileIcon from '../assets/Profile.png';
+
 import searchIcon from '../assets/SearchIcon.png';
-import { Link, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import { useAuthorization } from '../context/AuthorizationContext';
+import ProfileDropDown from './ProfileDropDown';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Header: React.FC = () => {
         <ul className="flex flex-wrap items-center space-x-4">
           <li>
             <a className="text-twitter-blue text-2xl sm:text-3xl font-semibold" href="/">
-              {isAuthenticated ? user?.username || 'SCrypto' : 'SCrypto'}
+              {isAuthenticated ? user?.username : 'SCrypto'}
             </a>
           </li>
           <li className="hidden sm:inline">
@@ -31,35 +32,44 @@ const Header: React.FC = () => {
           </li>
         </ul>
 
+
+
         <ul className="flex items-center space-x-4 sm:space-x-6 mt-2 sm:mt-0">
-            <button
-              className="bg-twitter-blue w-20 h-6 rounded-2xl text-sm font-medium hover:brightness-110 transition"
-              onClick={() => navigate('/LoginPage')}
-            >
-              Login
-            </button>
+          {isAuthenticated ? (
+                   <>
+              <li>
+                <img className="w-6 h-6 cursor-pointer" src={searchIcon} alt="Search" />
+              </li> 
+              <li> 
+                <ProfileDropDown />
+              </li>
+              <li>
+                <button
+                  className="bg-twitter-blue w-24 h-8 rounded-2xl text-sm font-medium hover:brightness-110 transition"
+                  onClick={() => navigate('/YourWallet')}
+                >
+                  Wallet
+                </button>
+              </li>
+             
+             
+            </>  
+          ) : (
+    <>
               <button
-              className="bg-twitter-blue w-20 h-6 rounded-2xl text-sm font-medium hover:brightness-110 transition"
-              onClick={() => navigate('/RegisterPage')}
-            >
-              Sign Up
-            </button>
-          <li>
-            <img className="w-6 h-6 cursor-pointer" src={searchIcon} alt="Search" />
-          </li>
-          <li>
-            <button
-              className="bg-twitter-blue w-24 h-8 rounded-2xl text-sm font-medium hover:brightness-110 transition"
-              onClick={() => navigate('/YourWallet')}
-            >
-              Wallet
-            </button>
-          </li>
-          <li>
-            <Link to="/profilePage">
-            <img className="w-8 h-8 rounded-full cursor-pointer" src={profileIcon} alt="Profile"/>
-            </Link>
-          </li>
+                className="bg-twitter-blue w-20 h-6 rounded-2xl text-sm font-medium hover:brightness-110 transition"
+                onClick={() => navigate('/LoginPage')}
+              >
+                Login
+              </button>
+              <button
+                className="bg-twitter-blue w-20 h-6 rounded-2xl text-sm font-medium hover:brightness-110 transition"
+                onClick={() => navigate('/RegisterPage')}
+              >
+                Sign Up
+              </button>
+            </> 
+          )}
         </ul>
       </div>
     </header>
